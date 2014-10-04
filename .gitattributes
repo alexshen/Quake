@@ -1,0 +1,4 @@
+* text=auto
+# vs doesn't like lf endings
+*.dsw eol=crlf
+*.dsp eol=crlf
