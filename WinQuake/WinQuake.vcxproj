@@ -126,6 +126,7 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>.\release_gl\glquake.exe</OutputFile>
       <AdditionalDependencies>.\dxsdk\sdk\lib\dxguid.lib;comctl32.lib;winmm.lib;wsock32.lib;opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">
@@ -166,6 +167,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>.\debug_gl\glquake.exe</OutputFile>
       <AdditionalDependencies>.\dxsdk\sdk\lib\dxguid.lib;comctl32.lib;winmm.lib;wsock32.lib;opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -206,6 +208,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>.\Debug\WinQuake.exe</OutputFile>
       <AdditionalDependencies>.\dxsdk\sdk\lib\dxguid.lib;.\scitech\lib\win32\vc\mgllt.lib;winmm.lib;wsock32.lib;opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -245,6 +248,12 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>.\Release\WinQuake.exe</OutputFile>
       <AdditionalDependencies>.\dxsdk\sdk\lib\dxguid.lib;.\scitech\lib\win32\vc\mgllt.lib;winmm.lib;wsock32.lib;opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Link>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -467,13 +476,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="d_draw16.s">
       <FileType>Document</FileType>
@@ -484,13 +493,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="d_parta.s">
       <FileType>Document</FileType>
@@ -501,13 +510,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="d_polysa.s">
       <FileType>Document</FileType>
@@ -518,13 +527,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="d_scana.s">
       <FileType>Document</FileType>
@@ -535,13 +544,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="d_spr8.s">
       <FileType>Document</FileType>
@@ -552,13 +561,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="d_varsa.s">
       <FileType>Document</FileType>
@@ -569,13 +578,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="math.s">
       <FileType>Document</FileType>
@@ -584,25 +593,25 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="r_aclipa.s">
       <FileType>Document</FileType>
@@ -613,13 +622,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="r_aliasa.s">
       <FileType>Document</FileType>
@@ -630,13 +639,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="r_drawa.s">
       <FileType>Document</FileType>
@@ -647,13 +656,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="r_edgea.s">
       <FileType>Document</FileType>
@@ -664,13 +673,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="r_varsa.s">
       <FileType>Document</FileType>
@@ -681,13 +690,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="snd_mixa.s">
       <FileType>Document</FileType>
@@ -696,25 +705,25 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="surf16.s">
       <FileType>Document</FileType>
@@ -725,13 +734,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="surf8.s">
       <FileType>Document</FileType>
@@ -742,13 +751,13 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="sys_wina.s">
       <FileType>Document</FileType>
@@ -757,25 +766,25 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="worlda.s">
       <FileType>Document</FileType>
@@ -784,25 +793,25 @@ gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                      
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GL Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                    $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mycoolbuild</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="qe3.ico" />
     <CustomBuild Include="quake.ico" />

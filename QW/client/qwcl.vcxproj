@@ -127,6 +127,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>.\GLDebug\glqwcl.exe</OutputFile>
       <AdditionalDependencies>comctl32.lib;glu32.lib;..\dxsdk\sdk\lib\dxguid.lib;opengl32.lib;wsock32.lib;odbc32.lib;odbccp32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -166,6 +167,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>.\Release\qwcl.exe</OutputFile>
       <AdditionalDependencies>..\scitech\lib\win32\vc\mgllt.lib;..\dxsdk\sdk\lib\dxguid.lib;opengl32.lib;wsock32.lib;odbc32.lib;odbccp32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -207,6 +209,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>.\Debug\qwcl.exe</OutputFile>
       <AdditionalDependencies>..\scitech\lib\win32\vc\mgllt.lib;..\dxsdk\sdk\lib\dxguid.lib;opengl32.lib;wsock32.lib;odbc32.lib;odbccp32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">
@@ -246,6 +249,12 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>.\GLRelease\glqwcl.exe</OutputFile>
       <AdditionalDependencies>comctl32.lib;glu32.lib;..\dxsdk\sdk\lib\dxguid.lib;opengl32.lib;wsock32.lib;odbc32.lib;odbccp32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Link>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -461,13 +470,13 @@
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="d_draw16.s">
@@ -477,13 +486,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="d_parta.s">
@@ -493,13 +502,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="d_polysa.s">
@@ -509,13 +518,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="d_scana.s">
@@ -525,13 +534,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="d_spr8.s">
@@ -541,13 +550,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="d_varsa.s">
@@ -557,13 +566,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="math.s">
@@ -572,23 +581,23 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;          $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;          $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="r_aclipa.s">
       <FileType>Document</FileType>
@@ -597,13 +606,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="r_aliasa.s">
@@ -613,13 +622,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="r_drawa.s">
@@ -629,13 +638,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="r_edgea.s">
@@ -645,13 +654,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="r_varsa.s">
@@ -661,13 +670,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="snd_mixa.s">
@@ -676,23 +685,23 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;          $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;          $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="surf16.s">
       <FileType>Document</FileType>
@@ -701,13 +710,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="surf8.s">
@@ -717,13 +726,13 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="sys_wina.s">
@@ -732,23 +741,23 @@ del $(OutDir)%(Filename).spp </Command>
 ..\gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;          $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm.exe &lt; $(OutDir)%(Filename).spp          &gt;$(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GAS2MASM Conversion</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">cl /EP /DGLQUAKE &gt; $(OutDir)%(Filename).spp %(FullPath) 
 ..\gas2masm\debug\gas2masm &lt; $(OutDir)%(Filename).spp &gt;          $(OutDir)%(Filename).asm 
 ml /c /Cp /coff /Fo$(OutDir)%(Filename).obj /Zm /Zi                                                                                                                                                                                                                           $(OutDir)%(Filename).asm 
 del $(OutDir)%(Filename).spp </Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">$(OUTDIR)\$(InputName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">$(OUTDIR)\%(Filename).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="qe3.ico" />
     <CustomBuild Include="quakeworld.bmp" />

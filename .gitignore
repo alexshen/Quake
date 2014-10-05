@@ -2,3 +2,7 @@
 *.sdf
 *.suo
 *.user
+*.ipch
+*.swp
+Debug/
+Release/
